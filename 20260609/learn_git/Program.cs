@@ -1,4 +1,4 @@
-//last_update:20260609
+//last_update:今天日期
 using Scalar.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +55,26 @@ app.MapGet("/currenttime", () =>
 .WithName("GetCurrentTime")
 .WithDescription("取得當前時間資訊，包含本地時間、UTC 時間、時區等");
 
+app.MapGet("/health", () =>
+{
+    var startTime = DateTime.Now;
+    var healthInfo = new HealthCheckInfo(
+        Status: "Hello",
+        Timestamp: DateTime.Now,
+        Version: "1.0.0",
+        Environment: app.Environment.EnvironmentName,
+        MachineName: Environment.MachineName,
+        OsVersion: Environment.OSVersion.ToString(),
+        ProcessorCount: Environment.ProcessorCount,
+        WorkingSet: Environment.WorkingSet / 1024 / 1024, // MB
+        Message: "服務運作正常"
+    );
+    
+    return healthInfo;
+})
+.WithName("GetHealthCheck")
+.WithDescription("檢查應用程式健康狀態");
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
@@ -69,4 +89,16 @@ record CurrentTimeInfo(
     long UnixTimestamp,
     string DayOfWeek,
     int DayOfYear
+);
+
+record HealthCheckInfo(
+    string Status,
+    DateTime Timestamp,
+    string Version,
+    string Environment,
+    string MachineName,
+    string OsVersion,
+    int ProcessorCount,
+    long WorkingSet,
+    string Message
 );

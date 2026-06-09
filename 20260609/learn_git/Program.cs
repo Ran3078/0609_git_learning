@@ -1,4 +1,5 @@
 //last_update:20260609
+//hotfix solve
 using Scalar.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 

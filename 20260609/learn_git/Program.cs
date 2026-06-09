@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-//last_update:今天日期
-=======
 //last_update:20260609
->>>>>>> eb2356a0ef8fe1ad06e2eb526a5583204ab16601
 using Scalar.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -94,7 +90,6 @@ record CurrentTimeInfo(
     string DayOfWeek,
     int DayOfYear
 );
-<<<<<<< HEAD
 
 record HealthCheckInfo(
     string Status,
@@ -107,5 +102,3 @@ record HealthCheckInfo(
     long WorkingSet,
     string Message
 );
-=======
->>>>>>> eb2356a0ef8fe1ad06e2eb526a5583204ab16601
